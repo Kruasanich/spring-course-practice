@@ -1,6 +1,6 @@
 package ru.raiffeisen.study.spring.course.core.manager;
 
-import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import ru.raiffeisen.study.spring.course.core.model.Account;
 import ru.raiffeisen.study.spring.course.core.model.Product;
 import ru.raiffeisen.study.spring.course.core.model.User;
@@ -9,11 +9,16 @@ import ru.raiffeisen.study.spring.course.core.service.UserService;
 
 import java.util.Set;
 
-@AllArgsConstructor
+@Service
 public class RaiffeisenBank implements Bank {
 
-    private AccountService accountService;
-    private UserService userService;
+    private final AccountService accountService;
+    private final UserService userService;
+
+    public RaiffeisenBank(AccountService accountService, UserService userService) {
+        this.accountService = accountService;
+        this.userService = userService;
+    }
 
     @Override
     public void transfer(Account from, Account to) {

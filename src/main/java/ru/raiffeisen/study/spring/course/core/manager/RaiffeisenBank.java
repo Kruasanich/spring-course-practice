@@ -31,9 +31,7 @@ public class RaiffeisenBank implements Bank {
     }
 
     @Override
-    public void openNewProduct(User user, Product product) {
-
-    }
+    public User openNewProduct(User user, Product product) {return null;}
 
     @Override
     public Set<Account> allAccounts() {

@@ -9,7 +9,7 @@ import java.util.Set;
 public interface Bank {
     void transfer(Account from, Account to);
     Double accountAmount(User user);
-    void openNewProduct(User user, Product product);
+    User openNewProduct(User user, Product product);
     Set<Account> allAccounts();
     Set<User> allUsers();
 }

@@ -5,8 +5,10 @@ import ru.raiffeisen.study.spring.course.core.model.Account;
 import ru.raiffeisen.study.spring.course.core.model.Product;
 import ru.raiffeisen.study.spring.course.core.model.User;
 import ru.raiffeisen.study.spring.course.core.service.AccountService;
+import ru.raiffeisen.study.spring.course.core.service.ProductService;
 import ru.raiffeisen.study.spring.course.core.service.UserService;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -21,7 +23,7 @@ public class RaiffeisenBank implements Bank {
     }
 
     @Override
-    public void transfer(Account from, Account to) {
+    public void transfer(Account from, Account to, Double amount) {
 
     }
 
@@ -31,7 +33,17 @@ public class RaiffeisenBank implements Bank {
     }
 
     @Override
-    public User openNewProduct(User user, Product product) {return null;}
+    public Account openNewProduct(User user, Product product) {
+        Account account =
+                accountService
+                        .getAccounts()
+                        .stream()
+                        .filter(acc -> acc.getOwner().equals(user))
+                        .findFirst()
+                        .orElseThrow();
+        account.getProducts().add(product);
+        return account;
+    }
 
     @Override
     public Set<Account> allAccounts() {

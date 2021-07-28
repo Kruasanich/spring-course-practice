@@ -3,6 +3,7 @@ package ru.raiffeisen.study.spring.course.core.model;
 import lombok.Data;
 import lombok.NonNull;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -13,5 +14,5 @@ public class Account {
     private User owner;
     @NonNull
     private AccountLevel accountLevel;
-    private Set<Product> products;
+    private Set<Product> products = new HashSet<>();
 }

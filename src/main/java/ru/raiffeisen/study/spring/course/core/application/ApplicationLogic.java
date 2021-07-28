@@ -22,6 +22,7 @@ public class ApplicationLogic {
                 .allUsers()
                 .stream()
                 .findFirst()
-                .map(user -> raiffeisenBank.openNewProduct(user, productService.create("Credit card", ProductType.CREDIT_CARD)));
+                .map(user -> raiffeisenBank.openNewProduct(user, productService.create("Credit card", ProductType.CREDIT_CARD)))
+                .ifPresent(System.out::println);
     }
 }
